@@ -1,26 +1,26 @@
 <template>
-    <div class="min-h-screen bg-gray-100 p-10">
-        <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
-            <h1 class="text-2xl font-semibold mb-4">User List</h1>
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px;">
+        <div style="width: 100%; max-width: 1000px; background-color: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+            <h1 style="text-align: center; font-size: 28px; font-weight: 600; color: #333333; margin-bottom: 24px;">Usuários</h1>
 
-            <table class="min-w-full bg-white">
+            <table style="width: 100%; border-collapse: collapse; background-color: white; border: 1px solid #ddd;">
                 <thead>
-                <tr>
-                    <th class="py-2 px-4 bg-gray-200">ID</th>
-                    <th class="py-2 px-4 bg-gray-200">Name</th>
-                    <th class="py-2 px-4 bg-gray-200">Email</th>
-                    <th class="py-2 px-4 bg-gray-200">Created At</th>
-                    <th class="py-2 px-4 bg-gray-200">Updated At</th>
-                </tr>
+                    <tr style="background-color: #f7f7f7;">
+                        <th style="padding: 12px; border-bottom: 1px solid #ddd;">ID</th>
+                        <th style="padding: 12px; border-bottom: 1px solid #ddd;">Nome</th>
+                        <th style="padding: 12px; border-bottom: 1px solid #ddd;">Email</th>
+                        <th style="padding: 12px; border-bottom: 1px solid #ddd;">Criado emt</th>
+                        <th style="padding: 12px; border-bottom: 1px solid #ddd;">Atualizado em</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr v-for="user in users" :key="user.id" class="border-t">
-                    <td class="py-2 px-4">{{ user.id }}</td>
-                    <td class="py-2 px-4">{{ user.name }}</td>
-                    <td class="py-2 px-4">{{ user.email }}</td>
-                    <td class="py-2 px-4">{{ formatDate(user.created_at) }}</td>
-                    <td class="py-2 px-4">{{ formatDate(user.updated_at) }}</td>
-                </tr>
+                    <tr v-for="user in users" :key="user.id" style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 12px;">{{ user.id }}</td>
+                        <td style="padding: 12px;">{{ user.name }}</td>
+                        <td style="padding: 12px;">{{ user.email }}</td>
+                        <td style="padding: 12px;">{{ formatDate(user.created_at) }}</td>
+                        <td style="padding: 12px;">{{ formatDate(user.updated_at) }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -47,15 +47,23 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
+    padding: 12px;
     text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
     font-weight: 600;
+    background-color: #f7f7f7;
 }
 
 tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
 }
 </style>

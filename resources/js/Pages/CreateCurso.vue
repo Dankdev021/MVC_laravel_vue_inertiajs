@@ -1,57 +1,54 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-600">
-        <div class="w-full max-w-lg bg-white p-10 rounded-lg shadow-lg">
-            <h1 class="text-4xl font-semibold text-gray-800 mb-8 text-center">Create Course</h1>
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px;">
+        <div style="width: 100%; max-width: 1000px; background-color: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+            <h1 style="text-align: center; font-size: 28px; font-weight: 600; color: #333333; margin-bottom: 24px;">Criar curso</h1>
 
-            <form @submit.prevent="submit">
-                <!-- Course Name -->
-                <div class="mb-6">
-                    <label for="name" class="block text-gray-700 font-medium mb-2">Course Name:</label>
+            <form @submit.prevent="submit" style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                    <label for="name" style="display: block; font-size: 16px; color: #333333; margin-bottom: 8px;">Nome do curso:</label>
                     <input
                         v-model="form.name"
                         type="text"
                         id="name"
-                        class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: #f7f7f7; box-shadow: none; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
                         placeholder="Enter course name"
+                        @focus="handleFocus"
+                        @blur="handleBlur"
                     />
-                    <span v-if="errors.name" class="text-red-500 text-sm">{{ errors.name }}</span>
+                    <span v-if="errors.name" style="color: red; font-size: 12px;">{{ errors.name }}</span>
                 </div>
-
-                <!-- Course Description -->
-                <div class="mb-6">
-                    <label for="description" class="block text-gray-700 font-medium mb-2">Description:</label>
+                <div>
+                    <label for="description" style="display: block; font-size: 16px; color: #333333; margin-bottom: 8px;">Descrição:</label>
                     <textarea
                         v-model="form.description"
                         id="description"
-                        class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: #f7f7f7; box-shadow: none; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
                         placeholder="Enter course description"
+                        @focus="handleFocus"
+                        @blur="handleBlur"
                     ></textarea>
-                    <span v-if="errors.description" class="text-red-500 text-sm">{{ errors.description }}</span>
+                    <span v-if="errors.description" style="color: red; font-size: 12px;">{{ errors.description }}</span>
                 </div>
-
-                <!-- PDF Upload -->
-                <div class="mb-6">
-                    <label for="pdf" class="block text-gray-700 font-medium mb-2">Upload PDF:</label>
+                <div>
+                    <label for="pdf" style="display: block; font-size: 16px; color: #333333; margin-bottom: 8px;">Apostila em PDF:</label>
                     <input
                         type="file"
                         id="pdf"
                         @change="handleFileChange"
-                        class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none"
+                        style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: #f7f7f7; box-shadow: none; outline: none; transition: border-color 0.3s ease;"
                         accept="application/pdf"
                     />
-                    <span v-if="errors.pdf" class="text-red-500 text-sm">{{ errors.pdf }}</span>
+                    <span v-if="errors.pdf" style="color: red; font-size: 12px;">{{ errors.pdf }}</span>
                 </div>
-
-                <!-- Submit Button -->
                 <button
                     type="submit"
-                    class="w-full bg-blue-500 text-white py-4 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
+                    style="width: 100%; background-color: #4299e1; color: white; padding: 12px; border-radius: 8px; font-weight: 600; border: none; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease;"
+                    @mouseover="handleHover"
+                    @mouseout="handleMouseOut"
                 >
                     Create Course
                 </button>
-
-                <!-- Success Message -->
-                <div v-if="successMessage" class="mt-4 text-center text-green-600 font-medium">
+                <div v-if="successMessage" style="margin-top: 16px; text-align: center; color: green; font-weight: 500;">
                     <p>{{ successMessage }}</p>
                 </div>
             </form>
@@ -68,14 +65,14 @@ export default {
         const form = ref({
             name: '',
             description: '',
-            pdf: null, // Handle the PDF file
+            pdf: null,
         });
 
         const errors = ref({});
         const successMessage = ref('');
 
         const handleFileChange = (event) => {
-            form.value.pdf = event.target.files[0]; // Get the uploaded PDF
+            form.value.pdf = event.target.files[0];
         };
 
         const submit = () => {
@@ -83,7 +80,7 @@ export default {
             formData.append('name', form.value.name);
             formData.append('description', form.value.description);
             if (form.value.pdf) {
-                formData.append('pdf', form.value.pdf); // Append the PDF if uploaded
+                formData.append('pdf', form.value.pdf);
             }
 
             Inertia.post('/course/create-course', formData, {
@@ -92,7 +89,7 @@ export default {
                     errors.value = error;
                 },
                 onSuccess: () => {
-                    successMessage.value = 'Course created successfully!';
+                    successMessage.value = 'Curso criado com sucesso!';
                     form.value.name = '';
                     form.value.description = '';
                     form.value.pdf = null;
@@ -100,24 +97,27 @@ export default {
             });
         };
 
-        return { form, errors, successMessage, submit, handleFileChange };
+        const handleFocus = (event) => {
+            event.target.style.borderColor = '#4299e1';
+            event.target.style.boxShadow = '0 0 5px rgba(66, 153, 225, 0.5)';
+        };
+
+        const handleBlur = (event) => {
+            event.target.style.borderColor = '#ccc';
+            event.target.style.boxShadow = 'none';
+        };
+
+        const handleHover = (event) => {
+            event.target.style.backgroundColor = '#3182ce';
+            event.target.style.transform = 'translateY(-2px)';
+        };
+
+        const handleMouseOut = (event) => {
+            event.target.style.backgroundColor = '#4299e1';
+            event.target.style.transform = 'translateY(0)';
+        };
+
+        return { form, errors, successMessage, submit, handleFileChange, handleFocus, handleBlur, handleHover, handleMouseOut };
     },
 };
 </script>
-
-<style scoped>
-/* Custom styles */
-.min-h-screen {
-    min-height: 100vh;
-}
-
-.bg-gradient-to-r {
-    background: linear-gradient(to right, #63b3ed, #9f7aea);
-}
-
-input:focus,
-textarea:focus {
-    border-color: #4299e1;
-    box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
-}
-</style>

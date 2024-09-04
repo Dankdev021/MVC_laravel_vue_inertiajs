@@ -6,19 +6,16 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/create-user', function () {
     return Inertia::render('CreateUser');
 });
 Route::get('/update-user', function () {
     return Inertia::render('UpdateUser');
 });
-Route::get('/login', function () {
+Route::get('/', function () {
     return Inertia::render('Login');
 });
+
 Route::get('/course-create', function () {
     return Inertia::render('CreateCurso');
 });
