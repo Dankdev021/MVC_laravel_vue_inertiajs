@@ -1,0 +1,2 @@
+# MVC_laravel_vue_inertiajs
+MVC_laravel_vue_inertiajs
