@@ -11,7 +11,7 @@
                         type="text"
                         id="name"
                         style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: #f7f7f7; box-shadow: none; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
-                        placeholder="Enter course name"
+                        placeholder="Nome do curso"
                         @focus="handleFocus"
                         @blur="handleBlur"
                     />
@@ -23,7 +23,7 @@
                         v-model="form.description"
                         id="description"
                         style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: #f7f7f7; box-shadow: none; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease;"
-                        placeholder="Enter course description"
+                        placeholder="Descrição do curso"
                         @focus="handleFocus"
                         @blur="handleBlur"
                     ></textarea>
@@ -46,7 +46,7 @@
                     @mouseover="handleHover"
                     @mouseout="handleMouseOut"
                 >
-                    Create Course
+                    Criar curso
                 </button>
                 <div v-if="successMessage" style="margin-top: 16px; text-align: center; color: green; font-weight: 500;">
                     <p>{{ successMessage }}</p>
