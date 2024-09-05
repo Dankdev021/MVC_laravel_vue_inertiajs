@@ -2,7 +2,19 @@
     <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px;">
         <div style="width: 100%; max-width: 1000px; background-color: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
             <h1 style="text-align: center; font-size: 28px; font-weight: 600; color: #333333; margin-bottom: 24px;">Nossos cursos</h1>
+            <div style="display: flex; justify-content: space-between; padding: 5px;">
+                <button style="background-color: #4299e1; color: white; padding: 8px 15px; border: none; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                    <inertia-link :href="`/course-create`" style="color: white; text-decoration: none;">
+                        Adicionar novo curso
+                    </inertia-link>
+                </button>
 
+                <button style="background-color: #4299e1; color: white; padding: 8px 15px; border: none; border-radius: 5px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                    <inertia-link :href="`/user`" style="color: white; text-decoration: none;">
+                        Listar Usuarios do sistema
+                    </inertia-link>
+                </button>
+            </div>
             <table style="width: 100%; border-collapse: collapse; background-color: white; border: 1px solid #ddd;">
                 <thead>
                     <tr style="background-color: #f7f7f7; text-align: left;">
