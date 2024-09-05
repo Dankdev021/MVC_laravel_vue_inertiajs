@@ -19,7 +19,7 @@ class CursoController extends Controller
         $path = $request->file('pdf')->store('pdfs', 'public');
         $data['path'] = $path;
         $this->curso->createCurso($data);
-        return redirect()->back()->with('message', 'Curse created successfully');
+        return redirect('/course')->with('message', 'Curso cadastrado!');
     }
     public function UpdateCurso(Request $request)
     {
@@ -41,7 +41,7 @@ class CursoController extends Controller
             'path' => $data['path'] ?? $course->path_curso,
         ];
         $this->curso->updateCurso($userUpdate);
-        return redirect()->back()->with('message', 'Curse updated successfully');
+        return redirect('/course')->with('message', 'Curso atualizado');
     }
     public function getCursos()
     {

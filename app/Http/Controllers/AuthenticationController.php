@@ -11,9 +11,9 @@ class AuthenticationController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
-            return redirect()->back()->with('message', 'Logged in successfully');
+            return redirect()->intended('/course')->with('message', 'Usuário logado');
         }
-        return redirect()->back()->with('message', 'Logged in successfully');
+        return redirect('/login')->with('error', 'login invalidio');
     }
     public function logout()
     {

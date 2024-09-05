@@ -11,21 +11,28 @@ Route::get('/create-user', function () {
 });
 Route::get('/update-user', function () {
     return Inertia::render('UpdateUser');
-});
+})->middleware('auth');
 Route::get('/', function () {
     return Inertia::render('Login');
-});
+})->name('login')->withoutMiddleware('auth');
 
 Route::get('/course-create', function () {
     return Inertia::render('CreateCurso');
-});
+})->middleware('auth');
 Route::get('/course-update/{id}', function ($id) {
     return Inertia::render('UpdateCurso', ['id' => (int)$id]);
-});
+})->middleware('auth');
+
+
+
+
+
+
+
 
 Route::prefix('user')->group(function (){
     Route::post('/create-user', [UserController::class, 'createUser']);
-    Route::put('/update-user', [UserController::class, 'updateUser']);
+    Route::put('/update-user', [UserController::class, 'updateUser'])->middleware('auth');
     Route::get('', [UserController::class, 'getUsers']);
 });
 Route::prefix('authentications')->group(function (){
@@ -33,8 +40,8 @@ Route::prefix('authentications')->group(function (){
     Route::post('/logout', [AuthenticationController::class, 'logout']);
 });
 Route::prefix('course')->group(function (){
-    Route::post('/create-course', [CursoController::class, 'createCurso']);
-    Route::post('/update-course', [CursoController::class, 'updateCurso']);
-    Route::get('', [CursoController::class, 'getCursos']);
-    Route::get('/show/pdf/{id}', [CursoController::class, 'showPdf']);
+    Route::post('/create-course', [CursoController::class, 'createCurso'])->middleware('auth');
+    Route::post('/update-course', [CursoController::class, 'updateCurso'])->middleware('auth');
+    Route::get('', [CursoController::class, 'getCursos'])->middleware('auth');
+    Route::get('/show/pdf/{id}', [CursoController::class, 'showPdf'])->middleware('auth');
 });

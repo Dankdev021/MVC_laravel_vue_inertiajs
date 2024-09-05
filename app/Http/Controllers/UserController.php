@@ -15,7 +15,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         $this->user->createUser($data);
-        return redirect('/course')->with('message', 'Usuario criado com sucesso');
+        return redirect('/course')->with('message', 'Usuário criado com sucesso!');
     }
     public function updateUser(Request $request)
     {
